@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
 
-const Navbar = () => {
+const Navbar = ({ searchQuery, setSearchQuery, searchHandler, inputField }) => {
   const navActive = ({ isActive }) => {
     return {
       color: isActive ? "#f43f5e" : null,
@@ -12,11 +12,14 @@ const Navbar = () => {
       <h2 className="logo text-2xl font-semibold lowercase italic">
         Food<span className="text-rose-500">verse</span>
       </h2>
-      <form className="search-bar">
+      <form className="search-bar" onSubmit={searchHandler}>
         <input
+          ref={inputField}
           className="bg-white/75 p-2 px-8 lg:w-96 rounded-full outline-none shadow-lg shadow-rose-100 focus:shadow-rose-200 duration-300"
           type="search"
           placeholder="search recipe..."
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
           required
         />
       </form>
@@ -40,7 +43,7 @@ const Navbar = () => {
           >
             Favourites{" "}
             <span className="favourites-count font-semibold text-sky-400">
-              (10)
+              (0)
             </span>
           </NavLink>
         </li>
