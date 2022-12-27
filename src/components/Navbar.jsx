@@ -1,6 +1,12 @@
 import { NavLink } from "react-router-dom";
 
-const Navbar = ({ searchQuery, setSearchQuery, searchHandler, inputField }) => {
+const Navbar = ({
+  searchQuery,
+  setSearchQuery,
+  searchHandler,
+  inputField,
+  savedItems,
+}) => {
   const navActive = ({ isActive }) => {
     return {
       color: isActive ? "#f43f5e" : null,
@@ -43,7 +49,7 @@ const Navbar = ({ searchQuery, setSearchQuery, searchHandler, inputField }) => {
           >
             Favourites{" "}
             <span className="favourites-count font-semibold text-sky-400">
-              (0)
+              ({savedItems.length})
             </span>
           </NavLink>
         </li>
