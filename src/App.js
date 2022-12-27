@@ -6,6 +6,7 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Favourites from "./components/Favourites";
 import NotFound from "./components/NotFound";
+import RecipeItem from "./components/RecipeItem";
 
 function App() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -21,18 +22,20 @@ function App() {
 
     setSearchQuery("");
     inputField.current.blur();
+    setRecipes([]);
   };
 
   const getData = async (searchQuery) => {
     try {
       setLoading(true);
       const res = await fetch(
-        `https://forkify-api.herokuapp.com/api/search?q=${searchQuery}`
+        `https://forkify-api.herokuapp.com/api/v2/recipes?search=${searchQuery}`
       );
-      if (!res.ok) throw new Error("No recipes found");
+      if (!res.ok) throw new Error("something went wrong!");
+
       const data = await res.json();
-      console.log(data);
-      setRecipes(data.recipes);
+      if (data.results === 0) throw new Error("No recipe found!");
+      setRecipes(data?.data?.recipes);
       setLoading(false);
     } catch (error) {
       setError(error.message);
@@ -54,6 +57,7 @@ function App() {
             element={<Home recipes={recipes} loading={loading} error={error} />}
           />
           <Route path="/favourites" element={<Favourites />} />
+          <Route path="/recipe-item/:id" element={<RecipeItem />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </div>
