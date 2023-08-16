@@ -19,5 +19,5 @@ Foodverse GitHub repository - Source code for the food-focused website Foodverse
 5. Access the client in your browser at: `https://localhost:3000`
 
 # Links
-[Live-Link](https://foodverse-a3.netlify.app/)
-[Front-End-Link](https://github.com/Shm-Rsuf/foodverse)
+- [Live-Link](https://foodverse-a3.netlify.app/)
+- [Front-End-Link](https://github.com/Shm-Rsuf/foodverse)
